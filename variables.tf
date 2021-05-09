@@ -7,3 +7,4 @@ variable "aws_account_name" {}
 variable "gcp_account_name" {}
 variable "gcp_project_id" {}
 variable "gcp_project_creds_path" {}
+variable "bootstrap_remote_state" {}
