@@ -1,6 +1,6 @@
 provider "aviatrix" {
   //get controller IP from remote state - contoller bootstrap config
-  controller_ip = data.terraform_remote_state.controller_data.outputs.cloudformation["AviatrixControllerEIP"]
+  controller_ip = var.controller_ip
   username      = "admin"
   //get updated password from remote state - controller bootstrap config
   // password = data.terraform_remote_state.controller_data.outputs.cloudformation["AviatrixControllerPrivateIP"]

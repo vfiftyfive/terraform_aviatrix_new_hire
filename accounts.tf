@@ -1,15 +1,6 @@
 locals {
-  aws_role_app   = "arn:aws:iam::${local.aws_account_id}:role/aviatrix-role-app"
-  aws_role_ec2   = "arn:aws:iam::${local.aws_account_id}:role/aviatrix-role-ec2"
-  aws_account_id = data.terraform_remote_state.controller_data.outputs.cloudformation["AccountId"]
-}
-
-data "terraform_remote_state" "controller_data" {
-  backend = "local"
-
-  config = {
-    path = var.bootstrap_remote_state
-  }
+  aws_role_app   = "arn:aws:iam::${var.aws_account_id}:role/aviatrix-role-app"
+  aws_role_ec2   = "arn:aws:iam::${var.aws_account_id}:role/aviatrix-role-ec2"
 }
 
 // Add AWS account
@@ -27,7 +18,7 @@ resource "aviatrix_account" "aws_account" {
   // ARM China	"2048"
   cloud_type         = 1
   aws_iam            = true
-  aws_account_number = local.aws_account_id
+  aws_account_number = var.aws_account_id
   aws_role_app       = local.aws_role_app
   aws_role_ec2       = local.aws_role_ec2
 }
